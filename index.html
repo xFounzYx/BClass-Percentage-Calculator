@@ -617,16 +617,18 @@
 			transition: transform 0.4s ease, opacity 0.4s ease;
 		}
 
-		.close {
+		.modal-close {
 			color: #aaa;
 			position: absolute;
 			top: 10px;
 			right: 20px;
 			font-size: 28px;
 			font-weight: bold;
+			z-index: 1000;
+			cursor: pointer;
 		}
 
-		.close:hover, .close:focus {
+		.modal-close:hover, .modal-close:focus {
 			color: black;
 			text-decoration: none;
 			cursor: pointer;
@@ -649,6 +651,9 @@
 				opacity: 0;
 			}
 		}
+
+
+
 
     </style>
 </head>
@@ -706,9 +711,9 @@
 			<button id="import-button" onclick="document.getElementById('import-file').click()" class="styled-button">Импорт из Excel</button>
         </div>
 		<div class="form-group">
-			<a href="https://kundelik.kz/userfeed" target="_blank">
-			<button id="redirect-button">Перейти в Kundelik.kz</button>
-			</a>
+			<a href="https://bilimclass.kz/2024/summary-estimates?type=current" target="_blank">
+			<button id="redirect-button">Перейти в BilimClass.kz</button>
+		</a>
 		</div>
 		<div class="form-group">
 			<button id="instruction-button" onclick="openInstruction()">Инструкция</button>
@@ -759,7 +764,7 @@
 		</div>
 		<div id="instruction-modal" class="modal">
 			<div class="modal-content">
-				<span class="close" onclick="closeInstruction()">&times;</span>
+				<span class="modal-close" onclick="closeInstruction()">&times;</span>
 				<h2>Инструкция по эксплуатации</h2>
 				<p>
 					<div class="form-group">
@@ -776,6 +781,20 @@
 				</p>
 			</div>
 		</div>
+		<div id="subject-modal" class="modal">
+			<div class="modal-content">
+				<span class="modal-close" onclick="closeSubjectModal()">&times;</span>
+				<h2 id="subject-modal-title">Выберите предмет</h2>
+				<p>
+					<div class="form-group">
+						<select id="subject-select"></select>
+					</div>
+					<div class="form-group">
+						<button id="subject-select-button" onclick="selectSubject()">Выбрать</button>
+					</div>
+				</p>
+			</div>
+			</div>
 		</div>
 		
 
