@@ -24,16 +24,17 @@
 				resultSubject: "Предмет",
 				resultOverall: "Ваш общий процент",
 				resultGrade: "Ваша оценка",
-				exportbutton: "Экспорт в Excel",
+				subjectModalTitle: "Выберите предмет:",
+				selectButton: "Выбрать",
 				instruction: `
 						<h2>Инструкция по эксплуатации</h2>
 						<p>
 							<div class="form-group">
-							1. Введите название предмета. (При экспорте в excel оно используется в качестве названия файла)<br>
+							1. Зайдите на сайт BilimClass.kz (можете воспользоваться кнопкой на этом сайте)<br>
 							</div> <div class="form-group">
-							2. Введите оценки ФО и СОР, используя формат "1, 2, 3" для ФО и "1/2, 3/4, 5/6" для СОР.<br>
+							2. Перейдите в раздел "Оценки", выберите четверть и нажмите на кнопку "Скачать все оценки".<br>
 							</div> <div class="form-group">
-							3. Если по предмету есть СОЧ, выберите "Да" и введите оценку СОЧ в формате "1/2".<br>
+							3. Уже на этом сайте нажмите на кнопку "Импорт из Excel", после чего выберите нужный предмет.<br>
 							</div> <div class="form-group">
 							4. Если по предмету не пишется СОЧ, выберите "Нет" и выберите, за какой промежуток рассчитать процент.<br>
 							</div> <div class="form-group">
@@ -69,16 +70,17 @@
 				resultSubject: "Subject",
 				resultOverall: "Your overall percentage",
 				resultGrade: "Your grade",
-				exportbutton: "Export to Excel",
+				subjectModalTitle: "Choose a subject:",
+				selectButton: "Select",
 				instruction: `
 						<h2>Instruction manual</h2>
 						<p>
 							<div class="form-group">
-							1. Enter the name of the subject. (When exporting to excel, it is used as the file name)<br>
+							1. Go to the website BilimClass.kz (you can use the button on this website)<br>
 							</div> <div class="form-group">
-							2. Enter the FA and SAU scores using the format "1, 2, 3" for FA and "1/2, 3/4, 5/6" for SAU.<br>
+							2. Go to the "Grades" section, select a quarter and click on the "To download all grades" button.<br>
 							</div> <div class="form-group">
-							3. If the subject has a SAT, select "Yes" and enter the SAT grade in the "1/2" format.<br>
+							3. Already on this website, click on the "Import from Excel" button, and then select the desired subject.<br>
 							</div> <div class="form-group">
 							4. If the subject does not require a SAT, select "No" and choose the period for which to calculate the percentage.
 							</div> <div class="form-group">
@@ -114,16 +116,17 @@
 				resultSubject: "Пән",
 				resultOverall: "Жалпы пайыз",
 				resultGrade: "Сіздің бағаңыз",
-				exportbutton: "Excel-ге экспорттау",
+				subjectModalTitle: "Пәнін таңдаңыз",
+				selectButton: "Таңдау",
 				instruction: `
 					<h2>Пайдалану</h2>
 					<p>
 						<div class="form-group">
-						1. Пән атауын енгізіңіз. (Excel-ге экспорттау кезінде ол Файл атауы ретінде қолданылады)<br>
+						1. BilimClass.kz сайтқа өтіңіз (сіз осы сайттағы түймені пайдалана аласыз)<br>
 						</div> <div class="form-group">
-						2. ФБ үшін "1, 2, 3" және БЖБ үшін "1/2, 3/4, 5/6" пішімін пайдаланып, ФБ және БЖБ бағаларын енгізіңіз.<br>
+						2. "Бағалар" бөліміне өтіп, тоқсандағы таңдап, "Барлық бағаларды жүктеу" түймесін басыңыз.<br>
 						</div> <div class="form-group">
-						3. Егер пәнде ТЖБ болса, «Иә» опциясын таңдап, «1/2» пішімінде ТЖБ бағасын енгізіңіз.<br>
+						3. Осы сайтта "Excel-ден импорттау" батырмасын басыңыз, содан кейін қажетті пәнін таңдаңыз.<br>
 						</div> <div class="form-group">
 						4. Пән үшін ТЖБ жазылмаған болса, «Жоқ» тармағын таңдап, пайызды қай кезеңге есептеу керектігін таңдаңыз.
 						</div> <div class="form-group">
@@ -141,9 +144,9 @@
 		
 				let lastCalculation = null;
 
-      		function changeLanguage() {
-      		    const language = document.getElementById('language').value;
-				const strings = translations[language];
+      	function changeLanguage() {
+      	    const language = document.getElementById('language').value;
+			const strings = translations[language];
     
 			document.getElementById('themeLabel').textContent = strings.themeLabel;
 			document.getElementById('languageLabel').textContent = strings.languageLabel;
@@ -164,18 +167,20 @@
 			timePeriodSelect.options[1].text = strings.halfYear;
     
 			document.getElementById('calculate-button').textContent = strings.calculateButton;
-			document.getElementById('export-button').textContent = strings.exportbutton;
 			document.getElementById('foScores').placeholder = strings.foScoresPlaceholder;
 			document.getElementById('sorScores').placeholder = strings.sorScoresPlaceholder;
 			document.getElementById('sochScores').placeholder = strings.sochScoresPlaceholder;
 			document.getElementById('yes').textContent = strings.yes;
 			document.getElementById('no').textContent = strings.no;
 			document.querySelector('.modal-content').innerHTML = strings.instruction;
+			document.getElementById('subject-modal-title').textContent = strings.subjectModalTitle;
+			document.getElementById('subject-select-button').textContent = strings.selectButton;
 					if (lastCalculation) {
 						updateResult(lastCalculation);
 					}
 					localStorage.setItem('language', language);
 				}
+				
 		
 		function updateResult({ subject, percentageFoSor, percentageSoch, overallPercentage, grade }) {
 			const language = document.getElementById('language').value;
@@ -250,49 +255,49 @@
             const savedLanguage = localStorage.getItem('language');
 
             if (savedTheme) {
-                document.getElementById('theme').value = savedTheme;
-                document.body.className = savedTheme;
+            document.getElementById('theme').value = savedTheme;
+            document.body.className = savedTheme;
             }
-
+	
             if (savedLanguage) {
-                document.getElementById('language').value = savedLanguage;
-                changeLanguage();
+            document.getElementById('language').value = savedLanguage;
+            changeLanguage();
             }
         }
 		
 		window.onload = function() {
-            loadSettings();
-				const hasSoch = document.getElementById('hasSoch').value;
-				const timePeriodSection = document.getElementById('timePeriodSection');
+            		loadSettings();
+			const hasSoch = document.getElementById('hasSoch').value;
+			const timePeriodSection = document.getElementById('timePeriodSection');
     
 			if (hasSoch === 'нет') {
 				timePeriodSection.style.display = 'block';
-			}
+		}
 		
-		 const params = new URLSearchParams(window.location.search);
-  const subject = params.get("subject");
-  const foScores = params.get("foScores");
-  const sorScores = params.get("sorScores");
-  const sochScores = params.get("sochScores");
+			const params = new URLSearchParams(window.location.search);
+			const subject = params.get("subject");
+			const foScores = params.get("foScores");
+			const sorScores = params.get("sorScores");
+			const sochScores = params.get("sochScores");
 
-  // Заполнение полей
-  if (subject) document.getElementById("subject").value = subject;
-  if (foScores) document.getElementById("foScores").value = foScores; // Числа
-  if (sorScores) document.getElementById("sorScores").value = sorScores; // X/Y
+  		// Заполнение полей
+  		if (subject) document.getElementById("subject").value = subject;
+  		if (foScores) document.getElementById("foScores").value = foScores; // Числа
+  		if (sorScores) document.getElementById("sorScores").value = sorScores; // X/Y
 
-  if (sochScores && sochScores !== "") {
-    document.getElementById("hasSoch").value = "да";
-    document.getElementById("sochScores").value = sochScores;
-    document.getElementById("sochSection").style.display = "block";
-    document.getElementById("timePeriodSection").style.display = "none";
-  } else {
-    document.getElementById("hasSoch").value = "нет";
-    document.getElementById("sochSection").style.display = "none";
-    document.getElementById("timePeriodSection").style.display = "block";
-  }
+  		if (sochScores && sochScores !== "") {
+    		document.getElementById("hasSoch").value = "да";
+    		document.getElementById("sochScores").value = sochScores;
+    		document.getElementById("sochSection").style.display = "block";
+    		document.getElementById("timePeriodSection").style.display = "none";
+  		} else {
+    		document.getElementById("hasSoch").value = "нет";
+    		document.getElementById("sochSection").style.display = "none";
+    		document.getElementById("timePeriodSection").style.display = "block";
+  		}
 
-  validateForm(); // Проверка данных
-};
+  		validateForm(); // Проверка данных
+		};
 		
 		
 		
@@ -316,62 +321,114 @@
 			document.getElementById(fieldId).style.borderColor = '';
 		}
 
-		
-		function exportToExcel() {
-			const subject = document.getElementById("subject").value || 'Предмет';
-			const foScores = document.getElementById("foScores").value;
-			const sorScores = document.getElementById("sorScores").value;
-			const sochScores = document.getElementById("sochScores").value || '0/1';
-		
-			const data = [
-				['Предмет', 'ФО', 'СОР', 'СОЧ'],
-				[subject, foScores, sorScores, sochScores]
-			];
-			const worksheet = XLSX.utils.aoa_to_sheet(data);
-			const workbook = XLSX.utils.book_new();
-			XLSX.utils.book_append_sheet(workbook, worksheet, "Оценки");
-			const filename = `${subject}.xlsx`;
-			XLSX.writeFile(workbook, filename);
-		}
+
+
+			document.getElementById('redirect-button').innerText = 'Перейти в BilimClass.kz';
+			document.getElementById('redirect-button').parentElement.href = 'https://bilimclass.kz/2024/summary-estimates?type=current';
+
+		let subjects = [];
 
 		function importFromExcel(event) {
 			const file = event.target.files[0];
-		const reader = new FileReader();
-
+			const reader = new FileReader();
+	
 		reader.onload = function(e) {
 			const data = new Uint8Array(e.target.result);
 			const workbook = XLSX.read(data, { type: 'array' });
 			const sheetName = workbook.SheetNames[0];
 			const worksheet = workbook.Sheets[sheetName];
-			const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+			const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, defval: "" });
 
-        if (jsonData.length > 1) {
-            document.getElementById("subject").value = jsonData[1][0] || '';
-            document.getElementById("foScores").value = jsonData[1][1] || '';
-            document.getElementById("sorScores").value = jsonData[1][2] || '';
-            document.getElementById("sochScores").value = jsonData[1][3] || '';
-
-            const sochScore = jsonData[1][3];
-            const hasSoch = sochScore && sochScore !== '0/1' ? 'да' : 'нет';
-            document.getElementById("hasSoch").value = hasSoch;
-            const sochSection = document.getElementById("sochSection");
-            const timePeriodSection = document.getElementById("timePeriodSection");
-
-            if (hasSoch === 'да') {
-                sochSection.style.display = 'block';
-                timePeriodSection.style.display = 'none';  // Скрываем "Посчитать за"
-            } else {
-                sochSection.style.display = 'none';
-                timePeriodSection.style.display = 'block';  // Показываем "Посчитать за"
+        subjects = [];
+        for (let i = 7; i < jsonData.length; i++) {
+            const row = jsonData[i];
+            const subject = String(row[1]).trim();
+            const fo = String(row[2]).trim();
+            const sor = String(row[8]).trim();
+            const soch = String(row[9]).trim();
+            if (subject) {
+                subjects.push({ subject, fo, sor, soch });
             }
+        }
 
-
-            validateForm();
-			}
-			};
+			openSubjectModal();
+		};
 
 			reader.readAsArrayBuffer(file);
+			event.target.value = '';
 		}
+
+		function openSubjectModal() {
+			const modal = document.getElementById('subject-modal');
+			const modalContent = modal.querySelector('.modal-content');
+			const select = document.getElementById('subject-select');
+			select.innerHTML = '';
+
+			subjects.forEach((item, index) => {
+		let option = document.createElement('option');
+        option.value = index;
+        option.innerText = item.subject;
+        select.appendChild(option);
+		});
+
+		modal.style.display = 'block';
+		modal.style.animation = 'fadeIn 0.4s ease';
+
+		setTimeout(() => {
+			modalContent.style.transform = 'scale(1)';
+			modalContent.style.opacity = '1';
+		}, 100);
+		}
+
+		function closeSubjectModal() {
+			const modal = document.getElementById('subject-modal');
+			const modalContent = modal.querySelector('.modal-content');
+
+			modalContent.style.transform = 'scale(0.7)';
+			modalContent.style.opacity = '0';
+
+			setTimeout(() => {
+				modal.style.animation = 'fadeOut 0.4s ease';
+				setTimeout(() => {
+					modal.style.display = 'none';
+				}, 400);
+			}, 400);
+		}
+
+		function selectSubject() {
+			const select = document.getElementById('subject-select');
+			const selectedIndex = select.value;
+			const selectedSubject = subjects[selectedIndex];
+
+			document.getElementById("subject").value = selectedSubject.subject;
+			document.getElementById("foScores").value = selectedSubject.fo || '';
+			document.getElementById("sorScores").value = selectedSubject.sor || '';
+			document.getElementById("sochScores").value = selectedSubject.soch || '';
+
+			const hasSoch = selectedSubject.soch ? 'да' : 'нет';
+			document.getElementById("hasSoch").value = hasSoch;
+
+			const sochSection = document.getElementById("sochSection");
+			const timePeriodSection = document.getElementById("timePeriodSection");
+			if (hasSoch === 'да') {
+				sochSection.style.display = 'block';
+				timePeriodSection.style.display = 'none';
+			} else {
+				sochSection.style.display = 'none';
+				timePeriodSection.style.display = 'block';
+			}
+
+			closeSubjectModal();
+		}
+
+		window.onclick = function(event) {
+			const modal = document.getElementById('subject-modal');
+			if (event.target === modal) {
+				closeSubjectModal();
+			}
+		};
+
+
 
 
 		
