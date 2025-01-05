@@ -172,7 +172,7 @@
 			document.getElementById('sochScores').placeholder = strings.sochScoresPlaceholder;
 			document.getElementById('yes').textContent = strings.yes;
 			document.getElementById('no').textContent = strings.no;
-			document.querySelector('.modal-content').innerHTML = strings.instruction;
+			document.getElementById('instruction-content').textContent = strings.instruction;
 			document.getElementById('subject-modal-title').textContent = strings.subjectModalTitle;
 			document.getElementById('subject-select-button').textContent = strings.selectButton;
 					if (lastCalculation) {
