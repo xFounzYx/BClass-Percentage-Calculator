@@ -186,6 +186,9 @@
 			const language = document.getElementById('language').value;
 			const strings = translations[language];
 			const hasSoch = document.getElementById("hasSoch").value;
+			const formatPercentage = (value) => {
+        			return Math.abs(value - Math.round(value)) < 0.1 ? Math.round(value) : value.toFixed(1);
+    			};
 
 			let resultDiv = `
 				${strings.resultSubject}: ${subject}<br>
