@@ -193,7 +193,7 @@
 			`;
 
 			if (hasSoch === 'да') {
-				resultDiv += ` + ${percentageSoch.toFixed(1)}% = ${overallPercentage.toFixed(1)}%`;
+				resultDiv += ` + ${percentageSoch.toFixed(1)}% = ${overallPercentage.toFixed(2)}%`;
 			} else {
 				resultDiv += ` = ${percentageFoSor.toFixed(1)}%`; // Только ФО и СОР
 			}
