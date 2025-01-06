@@ -193,9 +193,9 @@
 			`;
 
 			if (hasSoch === 'да') {
-				resultDiv += ` + ${percentageSoch.toFixed(1)}% = ${overallPercentage.toFixed(0)}%`;
+				resultDiv += ` + ${percentageSoch.toFixed(1)}% = ${overallPercentage.toFixed(1)}%`;
 			} else {
-				resultDiv += ` = ${percentageFoSor.toFixed(0)}%`; // Только ФО и СОР
+				resultDiv += ` = ${percentageFoSor.toFixed(1)}%`; // Только ФО и СОР
 			}
 
 			const timePeriod = document.getElementById("timePeriod").value;
