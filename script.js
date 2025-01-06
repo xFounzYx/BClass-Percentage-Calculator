@@ -196,12 +196,10 @@
 			`;
 
 			if (hasSoch === 'да') {
-				resultDiv += ` + ${percentageSoch.toFixed(1)}% = ${Number.isInteger(overallPercentage) ? overallPercentage : overallPercentage.toFixed(1)}%`;
-
-			} else {
-				resultDiv += ` = ${Number.isInteger(percentageFoSor) ? percentageFoSor : percentageFoSor.toFixed(1)}%`; // Только ФО и СОР
-
-			}
+        			resultDiv += ` + ${formatPercentage(percentageSoch)}% = ${formatPercentage(overallPercentage)}%`;
+    			} else {
+        			resultDiv += ` = ${formatPercentage(percentageFoSor)}%`;
+    			}
 
 			const timePeriod = document.getElementById("timePeriod").value;
     
