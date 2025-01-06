@@ -193,9 +193,11 @@
 			`;
 
 			if (hasSoch === 'да') {
-				resultDiv += ` + ${percentageSoch.toFixed(1)}% = ${overallPercentage.toFixed(1)}%`;
+				resultDiv += ` + ${percentageSoch.toFixed(1)}% = ${Number.isInteger(overallPercentage) ? overallPercentage : overallPercentage.toFixed(1)}%`;
+
 			} else {
-				resultDiv += ` = ${percentageFoSor.toFixed(1)}%`; // Только ФО и СОР
+				resultDiv += ` = ${Number.isInteger(percentageFoSor) ? percentageFoSor : percentageFoSor.toFixed(1)}%`; // Только ФО и СОР
+
 			}
 
 			const timePeriod = document.getElementById("timePeriod").value;
