@@ -535,9 +535,7 @@
 
 			lastCalculation = { subject, percentageFoSor, percentageSoch, overallPercentage, grade };
 			updateResult(lastCalculation);
-        
-			document.getElementById('export-button').style.display = 'block';
-			}
+
 
 		
 		
