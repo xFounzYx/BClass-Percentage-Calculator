@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" href="logo.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="logo.png" sizes="32x32" type="image/png">
     <title>Калькулятор баллов</title>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap" rel="stylesheet">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <style>
 		select {
 			background-color: #fff;
@@ -659,8 +658,6 @@
 </head>
 <body class="default">
     <div class="container">
-
-
         <div style="margin-bottom: 10px">
             <label for="theme" id="themeLabel">Выберите тему:</label>
             <select id="theme" onchange="changeTheme()">
@@ -694,9 +691,8 @@
                 <option value="buttercream">Butter Cream</option>
                 <option value="mandarinpeel">Mandarin Peel</option>
             </select>
-			</div>
-		
-		<div style="margin-bottom: 20px">
+        </div>
+        <div style="margin-bottom: 20px">
             <label for="language" id="languageLabel">Выберите язык:</label>
             <select id="language" onchange="changeLanguage()">
                 <option value="ru" id="ru">Русский</option>
@@ -705,34 +701,31 @@
             </select>
         </div>
         <h1 id="title" align="center">Калькулятор процентов</h1>
-		<div class="form-group" style="display: flex; gap: 10px; justify-content: space-between;">
+        <div class="form-group" style="display: flex; gap: 10px; justify-content: space-between;">
             <label id="import-label">Введите данные ниже, либо сделайте импорт из файла:</label>
-			<input type="file" id="import-file" accept=".xlsx" style="display: none;" onchange="importFromExcel(event)">
-			<button id="import-button" onclick="document.getElementById('import-file').click()" class="styled-button">Импорт из Excel</button>
+            <input type="file" id="import-file" accept=".xlsx" style="display: none;" onchange="importFromExcel(event)">
+            <button id="import-button" onclick="document.getElementById('import-file').click()" class="styled-button">Импорт из Excel</button>
         </div>
-		<div class="form-group">
-			<a href="https://bilimclass.kz/2024/summary-estimates?type=current" target="_blank">
-			<button id="redirect-button">Перейти в BilimClass.kz</button>
-		</a>
-		</div>
-		<div class="form-group">
-			<button id="instruction-button" onclick="openInstruction()">Инструкция</button>
-		</div>
+        <div class="form-group">
+            <a href="https://bilimclass.kz/2024/summary-estimates?type=current" target="_blank">
+                <button id="redirect-button">Перейти в BilimClass.kz</button>
+            </a>
+        </div>
+        <div class="form-group">
+            <button id="instruction-button" onclick="openInstruction()">Инструкция</button>
+        </div>
         <div class="form-group">
             <label for="subject" id="subject-label">Введите название предмета:</label>
             <input type="text" id="subject" oninput="validateForm()">
         </div>
-
         <div class="form-group">
             <label for="foScores" id="foScores-label">Введите ФО:</label>
             <input type="text" id="foScores" oninput="validateForm()" placeholder="Например: 8, 9, 10">
         </div>
-
         <div class="form-group">
             <label for="sorScores" id="sorScores-label">Введите оценки СОР:</label>
             <input type="text" id="sorScores" oninput="validateForm()" placeholder="Например: 8/10, 9/10, 10/10">
         </div>
-		
         <div class="form-group">
             <label for="hasSoch" id="hasSoch-label">Есть СОЧ?</label>
             <select id="hasSoch" oninput="validateForm()">
@@ -740,65 +733,66 @@
                 <option value="да" id="yes">Да</option>
             </select>
         </div>
-		
-		<div class="form-group" id="timePeriodSection" style="display:none;">
-			<label for="timePeriod">Посчитать за:</label>
-			<select id="timePeriod" oninput="validateForm()">
-				<option value="quarter">За четверть</option>
-				<option value="half-year">За полугодие</option>
-			</select>
-		</div>
-
-
+        <div class="form-group" id="timePeriodSection" style="display:none;">
+            <label for="timePeriod">Посчитать за:</label>
+            <select id="timePeriod" oninput="validateForm()">
+                <option value="quarter">За четверть</option>
+                <option value="half-year">За полугодие</option>
+            </select>
+        </div>
         <div class="form-group" id="sochSection">
             <label for="sochScores" id="sochScores-label">Введите оценку СОЧ:</label>
             <input type="text" id="sochScores" oninput="validateForm()" placeholder="Например: 9/10">
         </div>
-
+        <div class="form-group">
+            <label for="decimalPlaces" id="decimalPlaces-label">Округлить до:</label>
+            <select id="decimalPlaces">
+                <option value="0" id="zero">0 знаков</option>
+                <option value="1" id="one" selected>1 знака</option>
+                <option value="2" id="two">2 знаков</option>
+                <option value="3" id="three">3 знаков</option>
+            </select>
+        </div>
         <div style="display: flex; gap: 10px; justify-content: space-between;">
-			<button id="calculate-button" onclick="calculate()">Рассчитать</button>
-		</div>
+            <button id="calculate-button" onclick="calculate()">Рассчитать</button>
+        </div>
         <div class="result" id="result"></div>
-		<div id="instruction-modal" class="modal">
-			<div class="modal-content" id="instruction-content">
-				<span class="modal-close" onclick="closeInstruction()">&times;</span>
-				<h2>Инструкция по эксплуатации</h2>
-						<p>
-							<div class="form-group">
-							1. Зайдите на сайт BilimClass.kz (можете воспользоваться кнопкой на этом сайте)<br>
-							</div> <div class="form-group">
-							2. Перейдите в раздел "Оценки", выберите четверть и нажмите на кнопку "Скачать все оценки".<br>
-							</div> <div class="form-group">
-							3. Уже на этом сайте нажмите на кнопку "Импорт из Excel", после чего выберите нужный предмет.<br>
-							</div> <div class="form-group">
-							4. Если по предмету не пишется СОЧ, выберите "Нет" и выберите, за какой промежуток рассчитать процент.<br>
-							</div> <div class="form-group">
-							5. Нажмите кнопку "Рассчитать", чтобы увидеть ваш результат и итоговую оценку.<br>
-							</div> <div class="form-group">
-							6. Для смены языка или темы используйте выпадающие списки наверху страницы.
-							</div>
-			                        </p>
-			</div>
-		</div>
-		<div id="subject-modal" class="modal">
-			<div class="modal-content">
-				<span class="modal-close" onclick="closeSubjectModal()">&times;</span>
-				<h2 id="subject-modal-title">Выберите предмет</h2>
-				<p>
-					<div class="form-group">
-						<select id="subject-select"></select>
-					</div>
-					<div class="form-group">
-						<button id="subject-select-button" onclick="selectSubject()">Выбрать</button>
-					</div>
-				</p>
-			</div>
-			</div>
-		</div>
-		
-
-
-
-		<script src="script.js"></script>
+        <div id="instruction-modal" class="modal">
+            <div class="modal-content" id="instruction-content">
+                <span class="modal-close" onclick="closeInstruction()">&times;</span>
+                <h2>Инструкция по эксплуатации</h2>
+                <p>
+                    <div class="form-group">
+                    1. Зайдите на сайт BilimClass.kz (можете воспользоваться кнопкой на этом сайте)<br>
+                    </div> <div class="form-group">
+                    2. Перейдите в раздел "Оценки", выберите четверть и нажмите на кнопку "Скачать все оценки".<br>
+                    </div> <div class="form-group">
+                    3. Уже на этом сайте нажмите на кнопку "Импорт из Excel", после чего выберите нужный предмет.<br>
+                    </div> <div class="form-group">
+                    4. Если по предмету не пишется СОЧ, выберите "Нет" и выберите, за какой промежуток рассчитать процент.<br>
+                    </div> <div class="form-group">
+                    5. Нажмите кнопку "Рассчитать", чтобы увидеть ваш результат и итоговую оценку.<br>
+                    </div> <div class="form-group">
+                    6. Для смены языка или темы используйте выпадающие списки наверху страницы.
+                    </div>
+                </p>
+            </div>
+        </div>
+        <div id="subject-modal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" onclick="closeSubjectModal()">&times;</span>
+                <h2 id="subject-modal-title">Выберите предмет</h2>
+                <p>
+                    <div class="form-group">
+                        <select id="subject-select"></select>
+                    </div>
+                    <div class="form-group">
+                        <button id="subject-select-button" onclick="selectSubject()">Выбрать</button>
+                    </div>
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
